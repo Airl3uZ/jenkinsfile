@@ -10,7 +10,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'deploy docker'
-                sh pwd
+            }
+            step {
+                dir: dir('demo-php-ci') {
+                    sh /bin/sh/pwd
+                }
             }
         }
         stage('Test') {

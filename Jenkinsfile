@@ -1,12 +1,6 @@
 pipeline {
     agent any
-
-    stages {
-        stage('welcome') {
-            steps {
-                echo 'Jenkinsfile from git'
-            }
-        }
+    
     stages {
         stage('Build') {
             steps {

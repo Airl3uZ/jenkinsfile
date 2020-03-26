@@ -13,11 +13,9 @@ pipeline {
             }
             steps {
                 sh label: '', script: 'cd demo-php-ci'
-                }
             }
             steps {
                 sh label: '', script: 'pwd'
-                }
             }
         }
         stage('Test') {

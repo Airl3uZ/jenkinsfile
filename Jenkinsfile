@@ -9,7 +9,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'deploy docker'
+                sh pwd
             }
         }
         stage('Test') {

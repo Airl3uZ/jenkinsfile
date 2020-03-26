@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('checkout code') {
             steps {
-                echo '11111'
+                git clone 'https://github.com/Airl3uZ/demo-php-ci.git'
             }
         }
         stage('Build') {

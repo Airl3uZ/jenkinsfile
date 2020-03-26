@@ -10,8 +10,7 @@ pipeline {
         stage('build docker') {
             agent {
                 dockerfile {
-                    "dockerfile"
-                    lebel "web"
+                    filename "dockerfile"
                 }
             }
         }

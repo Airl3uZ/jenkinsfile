@@ -11,9 +11,12 @@ pipeline {
             steps {
                 echo 'deploy docker'
             }
-            step {
-                dir: dir('demo-php-ci') {
-                    sh /bin/sh/pwd
+            steps {
+                sh label: '', script: 'cd demo-php-ci'
+                }
+            }
+            steps {
+                sh label: '', script: 'pwd'
                 }
             }
         }

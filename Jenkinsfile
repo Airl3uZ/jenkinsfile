@@ -11,6 +11,7 @@ pipeline {
             steps {
                 echo 'deploy docker'
                 sh "docker-compose up -d"
+                sh "docker-compose exec --user www-data testci_web_1 composer install"
             }
         }
         stage('Test') {

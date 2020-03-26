@@ -10,11 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'deploy docker'
-            }
-            steps {
                 sh label: '', script: 'cd demo-php-ci'
-            }
-            steps {
                 sh label: '', script: 'pwd'
             }
         }

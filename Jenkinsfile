@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('checkout code') {
             steps {
-                git clone 'https://github.com/Airl3uZ/demo-php-ci.git'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
             }
         }
         stage('Build') {

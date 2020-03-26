@@ -7,7 +7,6 @@ pipeline {
                 echo '11111'
             }
         }
-    stages {
         stage('Build') {
             steps {
                 echo 'Building..'

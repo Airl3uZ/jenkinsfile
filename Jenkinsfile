@@ -1,5 +1,6 @@
 pipeline {
-    agent any
+    // agent any
+    agent { docker 'webdevpos/php-nginx:latest' }
 
     stages {
     //     stage('checkout code') {
@@ -8,7 +9,8 @@ pipeline {
     //         }
     //     }
         stage('build docker') {
-            docker.image('webdevpos/php-nginx:lastest').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
+            // docker.image('webdevpos/php-nginx:lastest').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
+            steps {
                 sh 'git clone https://github.com/Airl3uZ/demo-php-ci.git'
                 sh 'cp -r /demo-php-ci/ /app'
                 sh 'cd /app'

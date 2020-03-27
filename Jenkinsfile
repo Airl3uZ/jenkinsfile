@@ -8,13 +8,6 @@ pipeline {
             }
         }
         stage('build docker') {
-            // // docker.image('webdevpos/php-nginx:lastest').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
-            // agent { 
-            //     docker {
-            //         image 'webdevops/php-nginx:latest'
-            //         registryUrl 'https://hub.docker.com/r/webdevops/php-nginx/'
-            //     }
-            // }
             steps {
                 sh 'git clone https://github.com/Airl3uZ/demo-php-ci.git' /app
                 // sh 'cp -r /demo-php-ci/ /app'

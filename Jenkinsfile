@@ -8,9 +8,11 @@ pipeline {
     //         }
     //     }
         stage('build docker') {
-            sh 'git clone https://github.com/Airl3uZ/demo-php-ci.git'
-            sh 'cp -r /demo-php-ci/ /app'
-            sh 'composer update'
+            steps {
+                sh 'git clone https://github.com/Airl3uZ/demo-php-ci.git'
+                sh 'cp -r /demo-php-ci/ /app'
+                sh 'composer update'
+            }
         }
         stage('Test') {
             dock

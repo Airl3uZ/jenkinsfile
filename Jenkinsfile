@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     // docker.image('webdevops:php-nginx:latest').withRuns('-d=true -p 8888:80'){
-                        docker.image('webdevops/php-nginx:latest').inside("-v app:/app") {
+                        docker.image('webdevops/php-nginx:latest').inside("-v $PWD:/app") {
                             sh 'cd /app && pwd && composer update'
                         }
                     }

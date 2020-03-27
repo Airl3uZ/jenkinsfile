@@ -15,8 +15,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'git clone https://github.com/Airl3uZ/demo-php-ci.git'
-                sh 'cp -r /demo-php-ci/ /app'
+                sh 'git clone https://github.com/Airl3uZ/demo-php-ci.git' /app
+                // sh 'cp -r /demo-php-ci/ /app'
                 sh 'cd /app'
                 sh 'composer update'
             }

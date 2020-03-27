@@ -5,6 +5,7 @@ pipeline {
             image: 'webdevops/php-nginx:latest'
             registryUrl: 'https://hub.docker.com'
         }
+    }
 
     stages {
     //     stage('checkout code') {

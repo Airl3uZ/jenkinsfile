@@ -15,7 +15,6 @@ pipeline {
             }
         }
         stage('Test') {
-            dock
             steps {
                 echo 'Testing..'
                 // sh "./vendor/bin/phpunit"

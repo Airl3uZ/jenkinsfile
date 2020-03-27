@@ -8,12 +8,10 @@ pipeline {
             }
         }
         stage('build docker') {
-            steps {
                 docker.image('webdevops:php-nginx:latest').withRuns('-d=true -p 8888:80')
                 docker.image('webdevops:php-nginx:latest').inside("""--entrypoint=''""") {
                     sh 'hostname'
                 }
-            }
         }
         stage('Test') {
             steps {

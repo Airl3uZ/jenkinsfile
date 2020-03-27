@@ -4,7 +4,7 @@ pipeline {
         docker {
             image 'webdevops/php-nginx:latest'
             registryUrl 'https://hub.docker.com'
-        }
+        }.inside('-v /var/run/docker.sock:/var/run/docker.sock')
     }
 
     stages {

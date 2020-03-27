@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'webdevops/php-nginx:latest' } }
+    agent any
 
     stages {
     //     stage('checkout code') {
@@ -8,7 +8,7 @@ pipeline {
     //         }
     //     }
         stage('build docker') {
-            steps {
+            docker.image('php:7.2').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
                 sh 'git clone https://github.com/Airl3uZ/demo-php-ci.git'
                 sh 'cp -r /demo-php-ci/ /app'
                 sh 'composer update'

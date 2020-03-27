@@ -15,7 +15,7 @@ pipeline {
                             sh 'ls'
                         }
                     }
-                }
+                // }
             }
         }
         stage('Test') {

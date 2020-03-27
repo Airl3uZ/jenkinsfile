@@ -2,8 +2,8 @@ pipeline {
     // agent any
     agent { 
         docker {
-            image: 'webdevops/php-nginx:latest'
-            registryUrl: 'https://hub.docker.com'
+            image 'webdevops/php-nginx:latest'
+            registryUrl 'https://hub.docker.com'
         }
     }
 

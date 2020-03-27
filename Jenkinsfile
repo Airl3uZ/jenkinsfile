@@ -9,8 +9,6 @@ pipeline {
         }
         stage('build docker') {
             steps {
-                sh 'git clone https://github.com/Airl3uZ/demo-php-ci.git' /app
-                // sh 'cp -r /demo-php-ci/ /app'
                 sh 'docker-compose up -d'
             }
         }

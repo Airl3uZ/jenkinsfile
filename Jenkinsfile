@@ -12,6 +12,7 @@ pipeline {
             agent { 
                 docker {
                     image 'webdevops/php-nginx:latest'
+                    registryUrl 'https://hub.docker.com/r/webdevops/php-nginx/'
                 }
             }
             steps {

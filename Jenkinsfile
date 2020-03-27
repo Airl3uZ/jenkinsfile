@@ -12,7 +12,8 @@ pipeline {
                 script {
                     // docker.image('webdevops:php-nginx:latest').withRuns('-d=true -p 8888:80'){
                         docker.image('webdevops/php-nginx:latest').inside("-v app:/app") {
-                            sh 'ls'
+                            sh 'cd /app'
+                            sh 'composer update'
                         }
                     }
                 // }

@@ -1,12 +1,12 @@
 pipeline {
-    agent any
+    agent none
 
     stages {
-        stage('checkout code') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
-            }
-        }
+    //     stage('checkout code') {
+    //         steps {
+    //             checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
+    //         }
+    //     }
         stage('build docker') {
             // docker.image('webdevpos/php-nginx:lastest').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
             agent { 

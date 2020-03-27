@@ -1,7 +1,7 @@
-pipeline {
-    agent any
+node {
+    // agent any
 
-    node {
+    stages {
     //     stage('checkout code') {
     //         steps {
     //             checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])

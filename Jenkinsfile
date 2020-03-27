@@ -1,6 +1,10 @@
 pipeline {
     // agent any
-    agent { docker 'webdevpos/php-nginx:latest' }
+    agent { 
+        docker {
+            image: 'webdevops/php-nginx:latest'
+            registryUrl: 'https://hub.docker.com'
+        }
 
     stages {
     //     stage('checkout code') {

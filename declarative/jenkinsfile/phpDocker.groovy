@@ -6,11 +6,6 @@ pipeline {
    */
   agent any
 
-  // using the Timestamper plugin we can add timestamps to the console log
-  options {
-    timestamps()
-  }
-
   // environment {
   //   //Use Pipeline Utility Steps plugin to set env variables
   //   IMAGE = webdevops/php-nginx
@@ -19,20 +14,23 @@ pipeline {
 
   stages {
     stage('checkout git'){
-      git url: https://github.com/Airl3uZ/demo-php-ci.git
+      // git url: https://github.com/Airl3uZ/demo-php-ci.git
+      steps {
+          checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
+      }    
     }
     stage('run php docker') {
       steps {
         script {
-          docker.image('webdevops/php-nginx:latest').inside("-v app:/app -p 80:80 \
-            -e TZ="Asia/Bangkok" \
-            -e PHP_UPLOAD_MAX_FILESIZE=500m \
-            -e FPM_PM_MAX_CHILDREN=100 \
-            -e FPM_PM_START_SERVERS=50 \
-            -e FPM_PM_MIN_SPARE_SERVERS=25 \
-            -e FPM_PM_MAX_SPARE_SERVERS=100 \
-            -e FPM_PROCESS_IDLE_TIMEOUT=10s \
-            -e fpm.pool.listen=0.0.0.0:9000 \
+          docker.image('webdevops/php-nginx:latest').inside("-v app:/app -p 80:80 ,
+            -e TZ="Asia/Bangkok" ,
+            -e PHP_UPLOAD_MAX_FILESIZE=500m ,
+            -e FPM_PM_MAX_CHILDREN=100 ,
+            -e FPM_PM_START_SERVERS=50 ,
+            -e FPM_PM_MIN_SPARE_SERVERS=25 ,
+            -e FPM_PM_MAX_SPARE_SERVERS=100 ,
+            -e FPM_PROCESS_IDLE_TIMEOUT=10s ,
+            -e fpm.pool.listen=0.0.0.0:9000 ,
             -e fpm.pool.pm.status_path='/status.php'") {
             sh 'cd /app && pwd && composer update && ./vendor/bin/phpunit'
           }

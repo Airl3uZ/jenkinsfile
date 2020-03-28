@@ -1,5 +1,6 @@
-pipeline {
-    agent any
+
+#!groovy
+node('node') {
 
     stages {
         stage('checkout code') {
@@ -11,7 +12,7 @@ pipeline {
             steps {
                 script {
                     // docker.image('webdevops:php-nginx:latest').withRuns('-d=true -p 8888:80'){
-                        docker.image('webdevops/php-nginx:latest').inside("-v $PWD:/app") {
+                        docker.image('webdevops/php-nginx:latest').inside("-v app:/app") {
                             sh 'cd /app && pwd && composer update'
                         }
                     }

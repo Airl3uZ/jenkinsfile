@@ -5,7 +5,7 @@ pipeline {
             args '-v ./app:/app'
             customWorkspace 'phpTest'
             filename 'Dockerfile'
-            label 'phpDocker'
+            // label 'phpDocker'
             reuseNode true
         }
     }

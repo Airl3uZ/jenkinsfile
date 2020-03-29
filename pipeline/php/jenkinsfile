@@ -1,0 +1,49 @@
+pipeline {
+
+    agent {
+        dockerfile {
+            args '-v ./app:/app'
+            customWorkspace 'phpTest'
+            filename 'Dockerfile'
+            label 'phpDocker'
+            reuseNode true
+        }
+    }
+
+    tools {
+        git 'Default'
+    }
+
+
+    stages {
+        stage("Code Checkout") {
+            steps {
+                git branch: 'citest',
+                url: 'https://github.com/Airl3uZ/demo-php-ci.git'
+            }
+        }
+        withDir('app') {
+            sh 'pwd'
+        }
+    //  stage('Code Quality') {
+    //            steps {
+    //                script {
+    //                   def scannerHome = tool 'fosslinxsonar';
+    //                   withSonarQubeEnv("fosslinxSonarqubeserver") {
+    //                   sh "${tool("fosslinxsonar")}/bin/sonar-scanner"
+    //                                }
+    //                        }
+    //                    }
+    //                 }
+    //  stage("Install Dependencies") {
+    //                           steps {
+    //                                 sh "npm install"
+    //                                }
+    //                         }
+    //  stage("unit Test") {
+    //                     steps {
+    //                         sh "npm test"
+    //                       }
+    //                 }
+    }
+}

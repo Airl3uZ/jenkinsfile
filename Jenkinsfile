@@ -1,6 +1,11 @@
-
-#!groovy
-node('node') {
+pipeline {
+    agent any
+    environment {
+        branch = 'master'
+        scmUrl = 'https://github.com/Airl3uZ/demo-php-ci.git'
+        serverPort = '8080'
+        Image = 'webdevops/php-nginx'
+    }
 
     stages {
         stage('checkout code') {

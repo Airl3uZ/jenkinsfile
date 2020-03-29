@@ -13,7 +13,7 @@ pipeline {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
                 sh 'ls'
-                withDir('app') {
+                dir('app') {
                     echo "in dir"
                     sh 'ls'
                 }                    

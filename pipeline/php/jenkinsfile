@@ -17,12 +17,12 @@ pipeline {
     stages {
         stage("Code Checkout") {
             steps {
-                git branch: 'citest',
-                url: 'https://github.com/Airl3uZ/demo-php-ci.git'
-            }
-            withDir('/app') {
+                git branch: 'citest',url: 'https://github.com/Airl3uZ/demo-php-ci.git'
                 sh 'pwd'
             }
+            // withDir('/app') {
+            //     sh 'pwd'
+            // }
         }
 
     //  stage('Code Quality') {

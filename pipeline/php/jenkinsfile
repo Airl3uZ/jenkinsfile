@@ -1,8 +1,7 @@
 pipeline {
     agent {
         dockerfile {
-            dir '/pipeline/php'
-            filename 'Dockerfile'
+            filename '/pipeline/php/dockerfile'
             // label 'phpDocker'
             reuseNode true
         }

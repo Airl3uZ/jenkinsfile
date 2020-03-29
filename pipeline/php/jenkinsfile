@@ -15,13 +15,17 @@ pipeline {
                 dir('app') {
                     echo "Composer Update"
                     sh 'composer update'
+                    sh 'ls'
                 }                    
             }
         }
         stage('UnitTest') {
-            withDir('app') {
-                sh './vendor/bin/phpunit'
+            steps {
+                dir('app') {
+                    sh './vendor/bin/phpunit'
+                }
             }
+
         }
       
     }

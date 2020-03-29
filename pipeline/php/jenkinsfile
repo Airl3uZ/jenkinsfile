@@ -1,17 +1,19 @@
 pipeline {
     agent {
         dockerfile {
-            filename '/pipeline/php/dockerfile'
+            filename 'pipeline/php/dockerfile'
             // label 'phpDocker'
             reuseNode true
         }
     }
-    stages {
-        stage("Code Checkout") {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
-                sh 'pwd'
-            }
-        }    
+    node {
+        stages {
+            stage("Code Checkout") {
+                steps {
+                    checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
+                    sh 'pwd'
+                }
+            }    
+        }
     }
 }

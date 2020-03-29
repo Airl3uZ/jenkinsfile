@@ -2,9 +2,7 @@ pipeline {
 
     agent {
         dockerfile {
-            args '-v ./app:/app'
-            customWorkspace 'phpTest'
-            filename 'Dockerfile'
+            filename '/pipeline/php/Dockerfile'
             // label 'phpDocker'
             reuseNode true
         }
@@ -16,12 +14,8 @@ pipeline {
 
     stages {
         stage("Code Checkout") {
-            steps {
-                git branch: 'citest',url: 'https://github.com/Airl3uZ/demo-php-ci.git'
-                sh 'pwd'
-            }
-            // withDir('/app') {
-            //     sh 'pwd'
+            checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
+            sh 'pwd'
             // }
         }
 

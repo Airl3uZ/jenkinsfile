@@ -12,11 +12,15 @@ pipeline {
         stage("Code Checkout") {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
-                sh 'ls'
                 dir('app') {
-                    echo "in dir"
-                    sh 'ls'
+                    echo "Composer Update"
+                    sh 'composer update'
                 }                    
+            }
+        }
+        stage('UnitTest') {
+            withDir('app') {
+                sh './vendor/bin/phpunit'
             }
         }
       

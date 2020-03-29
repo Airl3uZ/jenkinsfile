@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            args '-v ${PWD}/app:/app -p 9000:9000'
+            args "-v ${PWD}/app:/app -p 9000:9000"
             image 'webdevops/php:latest'
             reuseNode true
         }
@@ -10,7 +10,7 @@ pipeline {
         stage("Code Checkout") {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
-                echo ${PWD}
+                echo "${PWD}"
                 sh 'ls'
             }
         }    

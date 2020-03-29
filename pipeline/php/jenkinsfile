@@ -1,12 +1,10 @@
 pipeline {
-    evironment {
-        ws = "php"
-    }
+
     agent {
         docker {
-            args "-v ${ws}/app:/app -p 9000:9000"
+            args "-v php/app:/app -p 9000:9000"
             image 'webdevops/php:latest'
-            customWorkspace "${ws}"
+            customWorkspace "php"
             reuseNode true
         }
     }

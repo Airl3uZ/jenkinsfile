@@ -14,9 +14,10 @@ pipeline {
 
     stages {
         stage("Code Checkout") {
-            checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
-            sh 'pwd'
-            // }
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
+                sh 'pwd'
+            }
         }
 
     //  stage('Code Quality') {

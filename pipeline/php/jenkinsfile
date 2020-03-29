@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        ws = pwd()
+    }
     agent {
         docker {
             args "-v ${PWD}/app:/app -p 9000:9000"
@@ -10,7 +13,7 @@ pipeline {
         stage("Code Checkout") {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
-                echo "${PWD}"
+                echo "$air" = pwd()
                 sh 'ls'
             }
         }    

@@ -1,44 +1,19 @@
 pipeline {
 
-    agent {
-        dockerfile {
-            filename '/pipeline/php/Dockerfile'
-            // label 'phpDocker'
-            reuseNode true
-        }
-    }
-
-    tools {
-        git 'Default'
-    }
-
     stages {
         stage("Code Checkout") {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
-                sh 'pwd'
-            }
+            agent {
+                dockerfile {
+                    dir '/pipeline/php'
+                    filename 'Dockerfile'
+                    // label 'phpDocker'
+                    reuseNode true
+                }
+                steps {
+                    checkout([$class: 'GitSCM', branches: [[name: '*/citest']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Airl3uZ/demo-php-ci.git']]])
+                    sh 'pwd'
+                }
+            }    
         }
-
-    //  stage('Code Quality') {
-    //            steps {
-    //                script {
-    //                   def scannerHome = tool 'fosslinxsonar';
-    //                   withSonarQubeEnv("fosslinxSonarqubeserver") {
-    //                   sh "${tool("fosslinxsonar")}/bin/sonar-scanner"
-    //                                }
-    //                        }
-    //                    }
-    //                 }
-    //  stage("Install Dependencies") {
-    //                           steps {
-    //                                 sh "npm install"
-    //                                }
-    //                         }
-    //  stage("unit Test") {
-    //                     steps {
-    //                         sh "npm test"
-    //                       }
-    //                 }
     }
 }

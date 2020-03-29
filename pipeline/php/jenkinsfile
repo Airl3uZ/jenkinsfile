@@ -19,7 +19,7 @@ pipeline {
                 }                    
             }
         }
-        stage('UnitTest') {
+        stage('Test') {
             steps {
                 dir('app') {
                     sh './vendor/bin/phpunit'

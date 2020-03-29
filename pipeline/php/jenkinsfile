@@ -1,8 +1,7 @@
 pipeline {
     agent {
         docker {
-            args '-v ./app:/app -p 9000:9000'
-            customWorkspace 'php'
+            args '-v ${PWD}/app:/app -p 9000:9000'
             image 'webdevops/php:latest'
             reuseNode true
         }

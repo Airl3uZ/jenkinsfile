@@ -31,7 +31,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('T2P-SonarQube') {
-                sh "${sonar} -Dproject.settings=${env.ws}/app/sonar-project.properties"
+                sh "${sonar} -Dproject.settings=app/sonar-project.properties"
                 } // submitted SonarQube taskId is automatically attached to the pipeline context
             }
         }

@@ -1,5 +1,4 @@
 pipeline {
-
     agent {
         docker {
             args "-v app:/app -p 9000:9000"
@@ -19,14 +18,28 @@ pipeline {
                 }                    
             }
         }
-        stage('Test') {
+        stage('UnitTest') {
             steps {
                 dir('app') {
                     sh './vendor/bin/phpunit'
                 }
             }
-
         }
-      
+        stage('SCA') {
+            stage('SonarQube analysis') {
+                withSonarQubeEnv('T2P-SonarQube') {
+                sh 'sonar-scanner -Dproject.settings=app/sonar-project.properties'
+                } // submitted SonarQube taskId is automatically attached to the pipeline context
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
     }
 }

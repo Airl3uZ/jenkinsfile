@@ -11,6 +11,7 @@ pipeline {
                 docker {
                     args "-v app:/app -p 9000:9000"
                     image 'webdevops/php:latest'
+                    customWorkspace "php"
                     reuseNode true
                 }
             }

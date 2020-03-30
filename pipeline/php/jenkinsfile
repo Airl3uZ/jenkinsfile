@@ -26,12 +26,10 @@ pipeline {
             }
         }
         stage('SCA') {
-            stage('SonarQube analysis') {
-                steps {
-                    withSonarQubeEnv('T2P-SonarQube') {
-                    sh 'sonar-scanner -Dproject.settings=app/sonar-project.properties'
-                    } // submitted SonarQube taskId is automatically attached to the pipeline context
-                }
+            steps {
+                withSonarQubeEnv('T2P-SonarQube') {
+                sh 'sonar-scanner -Dproject.settings=app/sonar-project.properties'
+                } // submitted SonarQube taskId is automatically attached to the pipeline context
             }
         }
         stage("Quality Gate") {

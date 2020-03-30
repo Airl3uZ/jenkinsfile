@@ -30,7 +30,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('T2P-SonarQube') {
-                sh "${sonar} -e -Dproject.settings=app/sonar-project.properties"
+                sh "${sonar}/bin/sonar-scanner -e -Dproject.settings=app/sonar-project.properties"
                 } // submitted SonarQube taskId is automatically attached to the pipeline context
             }
         }
